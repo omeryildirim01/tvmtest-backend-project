@@ -45,7 +45,7 @@ public class DbInitializer implements CommandLineRunner {
             dto2.setId(0L);
             dto2.setAddress("user address");
             dto2.setEmail("mail@gmail.com");
-            dto2.setName("Muhammed Kanlidere");
+            dto2.setName("User Name");
             dto2.setPhone("+9002169999999");
 
             userDtos.add(dto1);
