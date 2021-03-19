@@ -1,5 +1,6 @@
 package com.yildirimomer.tvmtest.controller;
 
+import com.google.common.base.Preconditions;
 import com.yildirimomer.tvmtest.domain.dto.UserDto;
 import com.yildirimomer.tvmtest.service.UserServiceImpl;
 import io.swagger.annotations.Api;
@@ -19,7 +20,7 @@ import java.util.Optional;
 /**
  * Created by Omer YILDIRIM on 18.03.2021.
  */
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(value = "/user")
 @RequiredArgsConstructor
@@ -36,7 +37,7 @@ public class UserController {
      * @param userDto
      * @return saved object
      */
-    @PostMapping
+    @RequestMapping(value = "/save",method = RequestMethod.POST)
     @ApiOperation(value = "Api method; to save an object",notes = "this is a demo")
     public ResponseEntity<UserDto> save( @RequestBody UserDto userDto){
         Assert.notNull(userDto.getName(), "Name mustn't be null");
@@ -86,14 +87,45 @@ public class UserController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/find",method = RequestMethod.GET)
+    @RequestMapping(value = "/find/{id}",method = RequestMethod.GET)
     @ApiOperation(value = "Api method; to find a record using by id ",notes = "this is a code")
-    public ResponseEntity<UserDto> findById(@RequestParam Long id) {
+    public ResponseEntity<UserDto> findById(@PathVariable long id) {
         UserDto result = userService.findById(id);
         if (result !=null){
             return ResponseEntity.ok(result);
         } else{
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
+    }
+    /**
+     * To delete by id
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteUser(@PathVariable long id) {
+        userService.delete(id);
+    }
+    /**
+     * To create an object
+     * @param userDto
+     * @return
+     */
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Long create(@RequestBody UserDto userDto) {
+        Preconditions.checkNotNull(userDto);
+        return userService.save(userDto).getId();
+    }
+    /**
+     * To update an object
+     * @return
+     */
+    @PutMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void update(@PathVariable( "id" ) Long id, @RequestBody UserDto userDto) {
+        Preconditions.checkNotNull(userDto);
+        userService.save(userDto);
     }
 }

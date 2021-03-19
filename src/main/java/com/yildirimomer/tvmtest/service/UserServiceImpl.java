@@ -14,7 +14,9 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * Created by Omer YILDIRIM on 18.03.2021.
+ */
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {

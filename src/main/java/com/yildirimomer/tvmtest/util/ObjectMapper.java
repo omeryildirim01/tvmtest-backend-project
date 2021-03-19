@@ -6,6 +6,9 @@ import org.modelmapper.convention.MatchingStrategies;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+/**
+ * Created by Omer YILDIRIM on 18.03.2021.
+ */
 public class ObjectMapper {
 
     private static ModelMapper modelMapper = new ModelMapper();

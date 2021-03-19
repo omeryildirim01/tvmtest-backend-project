@@ -6,7 +6,9 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * Created by Omer YILDIRIM on 18.03.2021.
+ */
 public interface UserService {
     /**
      * to save an item into db

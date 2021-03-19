@@ -19,7 +19,7 @@ public class UserDto extends BaseDto{
     @ApiModelProperty(name = "address",value = "address",dataType = "String")
     private String address;
     @ApiModelProperty(name = "telephone",value = "telephone",dataType = "String")
-    private String telephone;
+    private String phone;
     @ApiModelProperty(name = "mail",value = "mail",dataType = "String")
-    private String mail;
+    private String email;
 }
